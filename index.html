@@ -1,38 +1,138 @@
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Wayfire</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Wayfire</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
 
-    <script type="text/javascript" src="js/classie.js"></script>
-    <script type="text/javascript" src="js/scroll.js"> </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-</head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+        <script type="text/javascript" src="js/scroll.js"> </script>
+    </head>
 
-<body id="scroller" onscroll="on_scroll()">
-    <header>
-        <img src="img/logo_project.svg" id="nav_logo"/>
+    <body id="scroller">
+        <header class="header_animation">
+            <h1 class=header_animation> Wayfire </h1>
+            <img src="img/logo_project.svg" id="nav_logo" class="header_animation"/>
 
-        <a href="contact.html">Contacts</a>
-        <a href="plugins.html">Plugins</a>
-        <a href="docs.html">Documentation</a>
-        <a href="build.html">Build</a>
-        <a href="index.html">Home</a>
-    </header>
+            <a class="header_animation" href="#about">Contacts</a>
+            <a class="header_animation" href="docs.html">Configuration</a>
+            <a class="header_animation" href="#plans">Future development</a>
+            <a class="header_animation" href="#screenshots">Screenshots</a>
+            <a class="header_animation" href="#build">Build</a>
+            <a class="header_animation" href="#intro">Start</a>
+        </header>
 
-    <div id="intro">
-        <h1> Wayfire </h1>
-        <h3> A new Wayland compositor </h3>
+        <div id="content_wrapper" onscroll="on_scroll()">
+            <div id="intro" class="content_block" style="padding-top: 8em; height: 88.5%; width: 100%;">
+                <div id="intro_text" class="float:left;">
+                    <div style="font-size: 135%; width: 30%; display: inline-table">
+                        <p>
+                        Wayfire is a wayland window compositor which utilizes
+                        <a href="https://cgit.freedesktop.org/wayland/weston" style="color: white">libweston</a>.
+                        It aims to create a stable, usable and lightweight environment.
 
-    </div>
+                        </p> <p>
+                        Wayfire is written from scratch as a standalone compositor(it's not a weston shell). It has been designed
+                        with configurability and extensibility in mind - the end goal is to be able to tweak everything to suit the user's needs.
+                        </p>
 
-    <div id="about">
-        <h2> About the author </h2>
-        I'm Ilia Bozhinov. <br>
-        <img src="img/logo_big.png"/>
+                        <p> Currently the following(and more) is supported:<br>
+                        <ul>
+                            <li> <b>Simple configuration</b> with a single ini file </li>
+                            <li> <b>Floating</b> and experimental <b>tiling</b> mode </li>
+                            <li> Custom panels </li>
+                            <li> Various graphical effects </li>
+                            <li> Custom plugins(however no support for out-of-tree building yet) </li>
+                            <li> Experimental support for touch devices - simple gestures,
+                                on-screen keyboard </li>
+                        </ul>
+                        </p>
+                    </div>
 
-    </div>
+                    <div style="float: right; width: 60%; margin-left: 10%">
+                        <img style="width: 65%; height: 45%" src="img/cube.png">
+                        <img style="width: 65%; height: 45%; margin-top: 1%" src="img/panel.png">
+                    </div>
 
-</body>
+                </div>
+
+            </div>
+
+            <div id="build" class="content_block" style="margin-top: 1%; padding-top: 2em; height: 88.5%; width: 100%;">
+                <h1> Build instructions </h1>
+
+                <p>
+                First you need to compile a patched libweston.
+                <div class="code">
+                    git clone https://github.com/ammen99/weston && cd weston <br>
+                    ./configure <br>
+                    make -j && sudo make install <br>
+                </div>
+                </p>
+
+                <p>
+                Then you can compile Wayfire itself:
+                <div class="code">
+                    git clone https://github.com/ammen99/wayfire && cd wayfire <br>
+                    mkdir build && cd build <br>
+                    cmake ../ -DCMAKE_BUILD_TYPE=Release <br>
+                    make -j && sudo make install
+                </div>
+                </p>
+
+                <p>
+                You can now run <span class="code"> wayfire </span> from a TTY or nested(from either X11 or Wayland).
+                </p>
+
+            </div>
+
+            <div id="screenshots" class="content_block" style="margin-top: 1%; padding-top: 2em; height: 88.5%; width: 100%;">
+                <h1> Screenshots </h1>
+                <div style="display-style: inline-table">
+                    <img src="img/expo.png" style="width: 30em; height: 16.875em"/>
+                    <img src="img/cube.png" style="width: 30em; height: 16.875em"/>
+                    <img src="img/panel.png" style="width: 30em; height: 16.875em"/>
+                </div>
+
+            </div>
+
+            <div id="plans" class="content_block" style="margin-top: 1%; padding-top: 2em; height: 88.5%; width: 100%;">
+                <h1> Future development </h1>
+
+                <p style="font-size: 1.25em">
+                The development of Wayfire is still far from complete. Here are some items which will be implemented
+                at some time in the future(although help with them would be much appreciated, as I don't have that much
+                free time to spend on the project):
+                <ul style="font-size: 1.25em">
+                    <li> Bug fixes :) </li>
+                    <li> Touchpad gestures(requires libweston pathes) </li>
+                    <li> Better touchscreen support:
+                        <ul>
+                            <li> Improve existing gesture detection </li>
+                            <li> Make more plugins compatible with touch </li>
+                            <li> Support text-input and input-method protocol </li>
+                            <li> Better on-screen keyboard </li>
+                        </ul>
+                    </li>
+
+                    <li> Dynamic reconfiguration </li>
+                    <li> Output mirroring </li>
+                    <li> Add scripting abilities </li>
+                    <li> Improve built-in panel </li>
+                    <li> Out-of-tree plugins/panels </li>
+                    <li> Possibly implement <a href="https://github.com/wayland-wall/wayland-wall">wayland-wall</a> protocols </li>
+                </ul>
+                </p>
+
+            </div>
+
+            <div id="about" class="content_block" style="margin-top: 1%; padding-top: 120px; height: 83%;">
+                <h2> About the author </h2>
+                I'm Ilia Bozhinov. <br>
+                <img src="img/logo_big.png"/>
+            </div>
+        </div>
+
+    </body>
 </html>
+

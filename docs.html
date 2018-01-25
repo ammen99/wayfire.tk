@@ -1,38 +1,49 @@
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Wayfire</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Wayfire</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
 
-    <script type="text/javascript" src="js/classie.js"></script>
-    <script type="text/javascript" src="js/scroll.js"> </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-</head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+        <script type="text/javascript" src="js/scroll.js"> </script>
+        <script type="text/javascript" src="js/section.js"></script>
+    </head>
 
-<body id="scroller" onscroll="on_scroll()">
-    <header>
-        <img src="img/logo_project.svg" id="nav_logo"/>
+    <body id="scroller">
+        <header class="header_animation">
+            <h1 class=header_animation> Wayfire </h1>
+            <img src="img/logo_project.svg" id="nav_logo" class="header_animation"/>
+            <a class="header_animation" href="index.html">Start</a>
+        </header>
 
-        <a href="contact.html">Contacts</a>
-        <a href="plugins.html">Plugins</a>
-        <a href="docs.html">Documentation</a>
-        <a href="build.html">Build</a>
-        <a href="index.html">Home</a>
-    </header>
+        <div id="content_wrapper" onscroll="on_scroll()">
+            <div id="intro_text" style="padding-top: 6em">
+                <h1> Configuration </h1>
 
-    <div id="intro">
-        <h1> Wayfire </h1>
-        <h3> A new Wayland compositor </h3>
+                <p>
+                Configuration is done through the following file: <span class='code'> ~/.config/wayfire.ini </span>
+                </p>
 
-    </div>
+                <div>
+                    <button class="toggle_button"> Cube - show an overview of the current viewport row as a 3D cube </button>
+                    <div class="plugin_content">
+                        me text
+                        <img src="img/cube.png" style="width: 80em; height: 45em"/>
+                    </div>
+                </div>
 
-    <div id="about">
-        <h2> About the author </h2>
-        I'm Ilia Bozhinov. <br>
-        <img src="img/logo_big.png"/>
+                <div>
+                    <button class="toggle_button"> Expo - show a grid with live previews of all workspaces </button>
+                    <div class="plugin_content">
+                        <img src="img/expo.png" style="width: 80em; height: 45em"/>
+                    </div>
+                </div>
 
-    </div>
 
-</body>
+            </div>
+        </div>
+
+    </body>
 </html>
+

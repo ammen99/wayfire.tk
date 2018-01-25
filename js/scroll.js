@@ -1,28 +1,22 @@
 function on_scroll() {
-    var distanceY = document.getElementById("scroller").scrollTop;
-    var shrinkOn = 150;
-    var header = document.querySelector("header");
-    var image = document.getElementById("nav_logo");
+    var distanceY = $("#content_wrapper")[0].scrollTop;
+    var shrinkOn = 100;
+
     if (distanceY > shrinkOn) {
-        classie.add(header, "shrink");
+        $(".header_animation").addClass("shrink");
     } else {
-        if (classie.has(header,"shrink")) {
-            classie.remove(header,"shrink");
-        }
+        $(".header_animation").removeClass("shrink");
     }
 }
 
-$(document).ready(function(){
-    $("a").on('click', function(event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 80, function(){
-                window.location.hash = hash;
-            });
-        } // End if
-    });
-});
+$(document).on('click', 'a[href^="#"]', function (event) {
+    event.preventDefault();
 
+    var elem = document.getElementById($.attr(this, 'href').slice(1));
+    var srect = elem.getBoundingClientRect();
+    var offset = srect.top + $("#content_wrapper")[0].scrollTop;
+
+    $('#content_wrapper').animate({
+        scrollTop: offset
+    }, 350);
+});
